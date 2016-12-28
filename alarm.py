@@ -41,7 +41,7 @@ def updating_writer(a):
     register = 0
     slave_id = 0x00
     address  = 0x00
-    values = [int(pi.get_stat)]
+    values = [int(pi.get_stat())]
     context[slave_id].setValues(register,address,values)
 
 def main():

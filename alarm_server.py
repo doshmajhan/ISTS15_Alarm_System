@@ -22,8 +22,11 @@ class sensor():
         try:
             client = ModbusClient(addr, port=502)
             client.connect()
-            rr = client.read_holding_registers(0x00,1,unit=1)
+            rr = client.read_holding_registers(0x00,1)
+            print rr
+            print rr.registers
             stat = rr.registers[0]
+            print "Stat " + str(stat)
             return stat
         except:
             # if unable to connect, return None
