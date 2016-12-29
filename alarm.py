@@ -43,6 +43,7 @@ def updating_writer(a):
     address  = 0x00
     values = [int(pi.get_stat())]
     context[slave_id].setValues(register,address,values)
+    print context[slave_id]
 
 def main():
     # initialize the four register types

@@ -39,10 +39,10 @@ class sensor():
             client = ModbusClient(addr, port=502)
             client.connect()
             if self.stat != 1:
-                rq = client.write_registers(0, 0)
+                rq = client.write_registers(1, 0)
                 print rq.function_code
             else:
-                rq = client.write_registers(0., 1)
+                rq = client.write_registers(1, 1)
                 print rq.function_code
 
         except:
@@ -69,11 +69,11 @@ if __name__ == '__main__':
         f = open('teams_status.txt', 'w')
 
         if(sensor_obj.stat != None and sensor_obj.stat == 1):
-            log_stuff("Setting team number " + str(sensor_obj.team) + "to ON in " + str(sensor_obj.filename))
+            log_stuff("Setting team number " + str(sensor_obj.team) + " to ON in " + str(sensor_obj.filename))
             f.write(str(sensor_obj.stat))
 
         elif (sensor_obj.stat != None and sensor_obj.stat != 0):
-            log_stuff("Setting team number " + str(sensor_obj.team) + "to OFF in " + str(sensor_obj.filename))
+            log_stuff("Setting team number " + str(sensor_obj.team) + " to OFF in " + str(sensor_obj.filename))
             f.write(str(sensor_obj.stat))
 
         else:
