@@ -16,8 +16,7 @@ class Alarm(Thread):
     def __init__(self, fileName=''):
         Thread.__init__(self)
         self.fileName = fileName
-        self.currentStat = -999
-        self.correctionFactor = 1;
+        self.currentStat = 1
         self.enabled = True
 
     def run(self):
@@ -38,7 +37,7 @@ class Alarm(Thread):
 
 def updating_writer(a):
     context  = a[0]
-    register = 0
+    register = 3
     slave_id = 0x00
     address  = 0x00
     values = [int(pi.get_stat())]
