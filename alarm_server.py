@@ -11,7 +11,7 @@ import time
 class sensor():
     def __init__(self, team, addr, stat):
         self.team = team
-        #self.filename = str(team) + "-temp.txt"
+        self.filename = str(team) + "-stat.txt"
         self.addr = addr
         self.stat = self.get_stat(self.addr)
         self.sleeping = False
@@ -22,7 +22,7 @@ class sensor():
         try:
             client = ModbusClient(addr, port=502)
             client.connect()
-            rr = client.read_holding_registers(0x00,1)
+            rr = client.read_holding_registers(0x00,1,unit=0)
             print rr
             print rr.registers
             stat = rr.registers[0]
