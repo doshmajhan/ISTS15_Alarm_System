@@ -37,12 +37,14 @@ class Alarm(Thread):
 
 def updating_writer(a):
     context  = a[0]
-    register = 3
+    function = 3
     slave_id = 0x00
     address  = 0x00
     values = [int(pi.get_stat())]
-    context[slave_id].setValues(register,address,values)
-    print context[slave_id]
+    context[slave_id].setValues(function,address,values)
+
+    print context[slave_id].getValues(function, address)  # prints our holding register
+    print context[slave_id].getValues(function, 0x01)     # prints the register the server writes to
 
 def main():
     # initialize the four register types
