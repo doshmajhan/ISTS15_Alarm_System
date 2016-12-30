@@ -28,6 +28,7 @@ class sensor():
             stat = rr.registers[0]
             print "Stat " + str(stat)
             return stat
+            client.close()
         except:
             # if unable to connect, return None
             log_stuff("Unable to connect to " + self.addr)
@@ -36,18 +37,26 @@ class sensor():
     # set alarm either off or on
     def set_alarm(self):
         try:
-            client = ModbusClient(addr, port=502)
+            client = ModbusClient(self.addr, port=502)
             client.connect()
             if self.stat != 1:
-                rq = client.write_registers(1, 0)
-                print rq.function_code
-            else:
-                rq = client.write_registers(1, 1)
-                print rq.function_code
+                rq = client.write_register(1, 0)
+                if rq.function_code == 6:
+                    print "Success"
+                else:
+                    print "Failed"
 
-        except:
+            else:
+                rq = client.write_register(1, 1)
+                if rq.function_code == 6:
+                    print "Success"
+                else:
+                    print "Failed"
+
+            client.close()
+        except Exception as e:
             # if unable to connect, return None
-            log_stuff("Unable to connect to " + self.addr)
+            log_stuff("Unable to connect to " + self.addr + " - " + str(e))
             return None
 
         return "Success"

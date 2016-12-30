@@ -24,3 +24,76 @@
 12/29/16 12:51:29 - Unable to connect to 192.168.1.119
 12/29/16 12:51:39 - Setting team number 1 to ON in 1-stat.txt
 12/29/16 12:51:39 - Unable to connect to 192.168.1.119
+12/29/16 18:09:10 - Setting team number 1 to ON in 1-stat.txt
+12/29/16 18:09:10 - Unable to connect to 192.168.1.119
+12/29/16 18:09:20 - Setting team number 1 to ON in 1-stat.txt
+12/29/16 18:09:20 - Unable to connect to 192.168.1.119
+12/29/16 18:17:26 - Setting team number 1 to ON in 1-stat.txt
+12/29/16 18:17:26 - Unable to connect to 192.168.1.119
+12/29/16 18:17:36 - Setting team number 1 to ON in 1-stat.txt
+12/29/16 18:17:36 - Unable to connect to 192.168.1.119
+12/29/16 18:20:43 - Setting team number 1 to ON in 1-stat.txt
+12/29/16 18:20:43 - Unable to connect to 192.168.1.119
+12/29/16 20:49:44 - Setting team number 1 to ON in 1-stat.txt
+12/29/16 20:49:44 - Unable to connect to 192.168.1.119
+12/29/16 20:49:55 - Setting team number 1 to ON in 1-stat.txt
+12/29/16 20:49:55 - Unable to connect to 192.168.1.119
+12/29/16 20:51:29 - Setting team number 1 to ON in 1-stat.txt
+12/29/16 20:51:29 - Unable to connect to 192.168.1.119
+12/29/16 20:51:39 - Setting team number 1 to ON in 1-stat.txt
+12/29/16 20:51:39 - Unable to connect to 192.168.1.119
+12/29/16 20:55:49 - Setting team number 1 to ON in 1-stat.txt
+12/29/16 20:55:49 - Unable to connect to 192.168.1.119
+12/29/16 20:55:59 - Setting team number 1 to ON in 1-stat.txt
+12/29/16 20:55:59 - Unable to connect to 192.168.1.119
+12/29/16 20:56:09 - Setting team number 1 to ON in 1-stat.txt
+12/29/16 20:56:09 - Unable to connect to 192.168.1.119
+12/29/16 20:57:13 - Setting team number 1 to ON in 1-stat.txt
+12/29/16 20:57:13 - Unable to connect to 192.168.1.119
+12/29/16 20:57:23 - Setting team number 1 to ON in 1-stat.txt
+12/29/16 20:57:23 - Unable to connect to 192.168.1.119
+12/29/16 21:03:31 - Setting team number 1 to ON in 1-stat.txt
+12/29/16 21:03:31 - Unable to connect to 192.168.1.119
+12/29/16 21:09:55 - Setting team number 1 to ON in 1-stat.txt
+12/29/16 21:09:55 - Unable to connect to 192.168.1.119
+12/29/16 21:16:46 - Unable to connect to 192.168.1.119
+12/29/16 21:28:23 - Setting team number 1 to ON in 1-stat.txt
+12/29/16 21:28:23 - Unable to connect to 192.168.1.119
+12/29/16 21:28:33 - Setting team number 1 to ON in 1-stat.txt
+12/29/16 21:28:33 - Unable to connect to 192.168.1.119
+12/29/16 21:28:43 - Setting team number 1 to ON in 1-stat.txt
+12/29/16 21:28:43 - Unable to connect to 192.168.1.119
+12/29/16 21:28:55 - Unable to connect to 192.168.1.119
+12/29/16 21:28:55 - Unable to connect to 192.168.1.119
+12/30/16 01:10:49 - Setting team number 1 to ON in 1-stat.txt
+12/30/16 01:10:49 - Unable to connect to 192.168.1.119
+12/30/16 01:10:59 - Setting team number 1 to ON in 1-stat.txt
+12/30/16 01:10:59 - Unable to connect to 192.168.1.119
+12/30/16 01:13:15 - Setting team number 1 to ON in 1-stat.txt
+12/30/16 01:13:15 - Unable to connect to 192.168.1.119
+12/30/16 01:13:25 - Setting team number 1 to ON in 1-stat.txt
+12/30/16 01:13:25 - Unable to connect to 192.168.1.119
+12/30/16 01:13:35 - Setting team number 1 to ON in 1-stat.txt
+12/30/16 01:13:35 - Unable to connect to 192.168.1.119
+12/30/16 01:15:40 - Setting team number 1 to ON in 1-stat.txt
+12/30/16 01:15:40 - Unable to connect to 192.168.1.119
+12/30/16 01:15:50 - Setting team number 1 to ON in 1-stat.txt
+12/30/16 01:15:50 - Unable to connect to 192.168.1.119
+12/30/16 01:17:03 - Unable to connect to 192.168.1.119 - 'NoneType' object has no attribute 'write_single_register'
+12/30/16 01:17:13 - Setting team number 1 to ON in 1-stat.txt
+12/30/16 01:17:13 - Unable to connect to 192.168.1.119 - 'NoneType' object has no attribute 'write_single_register'
+12/30/16 01:19:46 - Unable to connect to 192.168.1.119
+12/30/16 01:19:46 - Unable to connect to 192.168.1.119 - global name 'addr' is not defined
+12/30/16 01:19:56 - Unable to connect to 192.168.1.119
+12/30/16 01:19:56 - Unable to connect to 192.168.1.119 - global name 'addr' is not defined
+12/30/16 01:20:06 - Unable to connect to 192.168.1.119
+12/30/16 01:20:06 - Unable to connect to 192.168.1.119 - global name 'addr' is not defined
+12/30/16 01:20:28 - Setting team number 1 to ON in 1-stat.txt
+12/30/16 01:20:28 - Unable to connect to 192.168.1.119 - global name 'addr' is not defined
+12/30/16 01:20:38 - Setting team number 1 to ON in 1-stat.txt
+12/30/16 01:20:38 - Unable to connect to 192.168.1.119 - global name 'addr' is not defined
+12/30/16 01:21:27 - Setting team number 1 to ON in 1-stat.txt
+12/30/16 01:21:27 - Unable to connect to 192.168.1.119 - 'ModbusTcpClient' object has no attribute 'write_single_register'
+12/30/16 01:21:54 - Setting team number 1 to ON in 1-stat.txt
+12/30/16 01:22:04 - Setting team number 1 to ON in 1-stat.txt
+12/30/16 01:25:49 - Setting team number 1 to ON in 1-stat.txt
