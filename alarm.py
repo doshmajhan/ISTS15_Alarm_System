@@ -9,6 +9,7 @@ from pymodbus.transaction import ModbusRtuFramer, ModbusAsciiFramer
 from twisted.internet.task import LoopingCall
 from threading import Thread
 from time import sleep
+import RPi.GPIO as GPIO
 import os
 import argparse
 
@@ -44,7 +45,29 @@ def updating_writer(a):
     context[slave_id].setValues(function,address,values)
 
     print context[slave_id].getValues(function, address)  # prints our holding register
-    print context[slave_id].getValues(function, 0x01)     # prints the register the server writes to
+    result = context[slave_id].getValues(function, 0x01)
+    print context[slave_id].getValues(function, 0x01) # prints the register the server writes to
+    set_alarm(result)
+
+def set_alarm(result):
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
+
+    if result == 1:
+        GPIO.setup(23, GPIO.OUT)
+        print "GREEN on"
+        GPIO.output(23, GPIO.HIGH)
+        time.sleep(3)
+        print "GREEN off"
+        GPIO.output(23, GPIO.LOW)
+
+    else:
+        GPIO.setup(18, GPIO.OUT)
+        print "RED on"
+        GPIO.output(18, GPIO.HIGH)
+        time.sleep(3)
+        print "RED off"
+        GPIO.output(18, GPIO.LOW)
 
 def main():
     # initialize the four register types
