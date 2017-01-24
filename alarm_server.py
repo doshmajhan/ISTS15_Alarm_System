@@ -1,5 +1,6 @@
 # Server to handle status updates from the alarm clients
-# @author: Doshmajhan
+# @author: Doshmajhan, bharmat
+
 from pymodbus.client.sync import ModbusTcpClient as ModbusClient
 import logging
 import argparse
@@ -23,12 +24,10 @@ class sensor():
             client = ModbusClient(addr, port=502)
             client.connect()
             rr = client.read_holding_registers(0x00,1,unit=0)
-            print rr
-            print rr.registers
             stat = rr.registers[0]
             print "Stat " + str(stat)
-            return stat
             client.close()
+            return stat
         except:
             # if unable to connect, return None
             log_stuff("Unable to connect to " + self.addr)
@@ -40,18 +39,18 @@ class sensor():
             client = ModbusClient(self.addr, port=502)
             client.connect()
             if self.stat != 1:
-                rq = client.write_register(1, 0)
+                rq = client.write_register(1, 0)    # write 0 to our result register
                 if rq.function_code == 6:
-                    print "Success"
+                    print "Writing successful"
                 else:
-                    print "Failed"
+                    print "Writing failed"
 
             else:
-                rq = client.write_register(1, 1)
+                rq = client.write_register(1, 1)    # write 1 to our result register
                 if rq.function_code == 6:
-                    print "Success"
+                    print "Writing successful"
                 else:
-                    print "Failed"
+                    print "Writing failed"
 
             client.close()
         except Exception as e:
@@ -59,7 +58,6 @@ class sensor():
             log_stuff("Unable to connect to " + self.addr + " - " + str(e))
             return None
 
-        return "Success"
 
 def log_stuff(message):
     with open('scada.log','a+') as f:
@@ -75,7 +73,7 @@ if __name__ == '__main__':
 
     while True:
         sensor_obj = sensor(args.team, args.address, 0)
-        f = open('teams_status.txt', 'w')
+        f = open(args.team + 'teams_status.txt', 'w')
 
         if(sensor_obj.stat != None and sensor_obj.stat == 1):
             log_stuff("Setting team number " + str(sensor_obj.team) + " to ON in " + str(sensor_obj.filename))
