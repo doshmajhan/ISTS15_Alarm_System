@@ -1,5 +1,5 @@
 # program to represent the alarm system in a teams network
-# @author: Doshmajhan
+# @author: Doshmajhan, bharmat
 
 from pymodbus.server.async import StartTcpServer
 from pymodbus.device import ModbusDeviceIdentification
@@ -44,10 +44,10 @@ def updating_writer(a):
     values = [int(pi.get_stat())]
     context[slave_id].setValues(function,address,values)
 
-    print context[slave_id].getValues(function, address)  # prints our holding register
+    #print context[slave_id].getValues(function, address)  # prints our holding register
     result = context[slave_id].getValues(function, 0x01)
-    print context[slave_id].getValues(function, 0x01) # prints the register the server writes to
-    set_alarm(result)
+    #print result # prints the register the server writes to
+    #set_alarm(result)
 
 def set_alarm(result):
     GPIO.setmode(GPIO.BCM)
@@ -89,13 +89,9 @@ def main():
     time = 5 # 5 seconds delaytime = 5 # 5 seconds delay
     loop = LoopingCall(f=updating_writer, a=(context,))
     loop.start(time, now=False) # initially delay by time
-    StartTcpServer(context, identity=identity, address=(args.address, 502))
+    StartTcpServer(context, identity=identity, address=('0.0.0.0', 502))
 
 if __name__ == '__main__':
-    parser = argparse.ArgumentParser(description='Listens on a specified interface for modbus connections')
-    parser.add_argument('-a', dest='address', help='The IP address to bind to', required=True)
 
-    # read arguments (the name of the file to copy)
-    args = parser.parse_args()
     pi = Alarm()
     main()
