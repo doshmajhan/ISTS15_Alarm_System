@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Datacenter Status</title>
+    <title>Alarm System Status</title>
     <link rel="stylesheet" href='https://fonts.googleapis.com/css?family=VT323' type='text/css'>
     <link rel="stylesheet" href="css/foundation.css" />
     <link rel="stylesheet" href="css/app.css" />
@@ -14,7 +14,7 @@
 
     <div class="row">
       <div class="large-12 columns">
-        <h1>Datacenter Status</h1>
+        <h1>Alarm System Status</h1>
       </div>
     </div>
 
@@ -23,8 +23,9 @@
     <div class="row">
       <div class="large-4 medium-4 columns">
         <div class="callout">
-          <h5>Team Datacenter Alarm Sensors</h5>
-          <p>To the right, you will find the current reading from the Modbus alarm sensors. The sensors are polled every five seconds and the reading is stored on this server.</p>
+          <h5>Team Alarm Sensor</h5>
+          <p>To the right, you will find the current reading from the Modbus alarm sensor. The
+          sensor is polled every 10 seconds and the reading is stored on this server.</p>
         </div>
       </div>
 
@@ -32,119 +33,23 @@
         <h5>Alarm Status Overview:</h5>
         <div class="row">
           <div class="large-4 columns">
-            <div id="t1box" class="callout ">
-              <h5>Team 1</h5>
-              <div class=tempval><p id="t1-stat">Loading Status...</p></div>
-              <!-- TEAM 1 TEMPERATUER-->
+            <div id="box" class="callout ">
+              <div class=alarmval><p id="stat">Loading Status...</p></div>
               <script type="text/javascript">
-              setInterval(function() {loadDoc('t1-stat.txt', 't1-stat','t1box')},4500);
-              </script>
-            </div>
-          </div>
-          <div class="large-4 columns">
-            <div id="t2box" class="callout ">
-              <h5>Team 2</h5>
-              <div class=tempval><p id="t2-stat">Loading status...</p></div>
-              <!-- TEAM 2 Status-->
-              <script type="text/javascript">
-              setInterval(function() {loadDoc('t2-stat.txt', 't2-stat','t2box')},4500);
-              </script>
-            </div>
-          </div>
-          <div class="large-4 columns">
-            <div id="t3box" class="callout ">
-              <h5>Team 3</h5>
-              <div class=tempval><p id="t3-stat">Loading Status...</p></div>
-              <!-- TEAM 3 Status-->
-              <script type="text/javascript">
-              setInterval(function() {loadDoc('t3-stat.txt', 't3-stat','t3box')},4500);
-              </script>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="large-4 medium-4 small-4 columns">
-            <div id="t4box" class="callout ">
-              <h5>Team 4</h5>
-              <div class=tempval><p id="t4-stat">Loading Status...</p></div>
-              <!-- TEAM 4 Status-->
-              <script type="text/javascript">
-              setInterval(function() {loadDoc('t4-stat.txt', 't4-stat','t4box')},4500);
-              </script>
-            </div>
-          </div>
-          <div class="large-4 medium-4 small-4 columns">
-            <div id="t5box" class="callout ">
-              <h5>Team 5</h5>
-              <div class=tempval><p id="t5-stat">Loading Status...</p></div>
-              <!-- TEAM 5 Status-->
-              <script type="text/javascript">
-              setInterval(function() {loadDoc('t5-stat.txt', 't5-stat','t5box')},4500);
-              </script>
-            </div>
-          </div>
-          <div class="large-4 medium-4 small-4 columns">
-            <div id="t6box" class="callout ">
-              <h5>Team 6</h5>
-              <div class=tempval><p id="t6-stat">Loading Status...</p></div>
-              <!-- TEAM 6 Status-->
-              <script type="text/javascript">
-              setInterval(function() {loadDoc('t6-stat.txt', 't6-stat','t6box')},4500);
-              </script>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="large-4 medium-4 small-4 columns">
-            <div id="t7box" class="callout ">
-              <h5>Team 7</h5>
-              <div class=tempval><p id="t7-stat">Loading Status...</p></div>
-              <!-- TEAM 7 Status-->
-              <script type="text/javascript">
-              setInterval(function() {loadDoc('t7-stat.txt', 't7-stat','t7box')},4500);
-              </script>
-            </div>
-          </div>
-          <div class="large-4 medium-4 small-4 columns">
-            <div id="t8box" class="callout ">
-              <h5>Team 8</h5>
-              <div class=tempval><p id="t8-stat">Loading Status...</p></div>
-              <!-- TEAM 8 Status-->
-              <script type="text/javascript">
-              setInterval(function() {loadDoc('t8-stat.txt', 't8-stat','t8box')},4500);
-              </script>
-            </div>
-          </div>
-          <div class="large-4 medium-4 small-4 columns">
-            <div id="t9box" class="callout ">
-              <h5>Team 9</h5>
-              <div class=tempval><p id="t9-stat">Loading Status...</p></div>
-              <!-- TEAM 9 Status-->
-              <script type="text/javascript">
-              setInterval(function() {loadDoc('t9-stat.txt', 't9-stat','t9box')},4500);
+              setInterval(function() {loadStat('stat.txt')},4500);
               </script>
             </div>
           </div>
         </div>
 
+        <h5>Alarm Sensor Log:</h5>
         <div class="row">
-          <div class="large-6 medium-6 columns">
-            <div id="t10box" class="callout">
-              <h5>Team 10</h5>
-              <div class=tempval><p id="t10-stat">Loading Status...</p></div>
-              <!-- TEAM 10 Status-->
+          <div class="large-4 columns">
+            <div id="log">
+                <table id="logTable">
+                </table>
               <script type="text/javascript">
-              setInterval(function() {loadDoc('t10-stat.txt', 't10-stat','t10box')},4500);
-              </script>
-            </div>
-          </div>
-          <div class="large-6 medium-6 columns">
-            <div id="t11box" class="callout">
-              <h5>Team 11</h5>
-              <div class=tempval><p id="t11-stat">Loading Status...</p></div>
-              <!-- TEAM 11 Status-->
-              <script type="text/javascript">
-              setInterval(function() {loadDoc('t11-stat.txt', 't11-stat','t11box')},4500);
+              setInterval(function() {loadLog('scada.log')}, 4500);
               </script>
             </div>
           </div>

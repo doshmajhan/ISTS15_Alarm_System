@@ -1,0 +1,10 @@
+---
+- hosts: pies
+  remote_user: pi
+  sudo: yes
+  tasks:
+    #- name: stuff
+      #command: wget http://10.80.100.36:8080/ISTS15_Alarm_System/led.py
+
+    - name: let there be light
+      command: python /home/pi/led.py

@@ -1,5 +1,7 @@
-# program to represent the alarm system in a teams network
-# @author: Doshmajhan, bharmat
+"""
+    program to represent the alarm system in a teams network
+    @author: Doshmajhan, bharmat
+"""
 
 from pymodbus.server.async import StartTcpServer
 from pymodbus.device import ModbusDeviceIdentification
@@ -43,10 +45,9 @@ def updating_writer(a):
     address  = 0x00
     values = [int(pi.get_stat())]
     context[slave_id].setValues(function,address,values)
-
+    # add stuff to log to file to be read
     #print context[slave_id].getValues(function, address)  # prints our holding register
     result = context[slave_id].getValues(function, 0x01)
-    #print result # prints the register the server writes to
     #set_alarm(result)
 
 def set_alarm(result):
@@ -86,12 +87,11 @@ def main():
     identity.ModelName   = 'SP_1337'
     identity.MajorMinorRevision = '1.0'
     pi.start()
-    time = 5 # 5 seconds delaytime = 5 # 5 seconds delay
+    time = 5 
     loop = LoopingCall(f=updating_writer, a=(context,))
     loop.start(time, now=False) # initially delay by time
     StartTcpServer(context, identity=identity, address=('0.0.0.0', 502))
 
 if __name__ == '__main__':
-
     pi = Alarm()
     main()

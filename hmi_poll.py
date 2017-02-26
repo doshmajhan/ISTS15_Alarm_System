@@ -34,31 +34,6 @@ class sensor():
             log_stuff("Unable to connect to " + self.addr)
             return None
 
-    # set alarm either off or on
-    def set_alarm(self):
-        try:
-            client = ModbusClient(self.addr, port=502)
-            client.connect()
-            if self.stat != 1:
-                rq = client.write_register(1, 0)    # write 0 to our result register
-                if rq.function_code == 6:
-                    print "Writing successful"
-                else:
-                    print "Writing failed"
-
-            else:
-                rq = client.write_register(1, 1)    # write 1 to our result register
-                if rq.function_code == 6:
-                    print "Writing successful"
-                else:
-                    print "Writing failed"
-
-            client.close()
-        except Exception as e:
-            # if unable to connect, return None
-            log_stuff("Unable to connect to " + self.addr + " - " + str(e))
-            return None
-
 
 def log_stuff(message):
     with open('scada.log','a+') as f:
@@ -71,17 +46,17 @@ if __name__ == '__main__':
     parser.add_argument('-t', help='The URL to start scraping from', dest="team",  required="True")
     parser.add_argument('-a', help='Address of the alarm sensor to poll', dest="address", required="True")
     args = parser.parse_args()
-
+    f = open('status.txt', 'w')
     while True:
         sensor_obj = sensor(args.team, args.address, 0)
 
         if(sensor_obj.stat != None and sensor_obj.stat == 1):
-            log_stuff("Setting team number " + str(sensor_obj.team) + " to ON in " + str(sensor_obj.filename))
+            log_stuff("Alarm sensor is ON")
 
         elif (sensor_obj.stat != None and sensor_obj.stat != 0):
-            log_stuff("Setting team number " + str(sensor_obj.team) + " to OFF in " + str(sensor_obj.filename))
-
-        sensor_obj.set_alarm()
+            log_stuff("Alarm sensor is OFF")
+        
+        f.write(sensor_obj.stat)
 
         time.sleep(10)
 
