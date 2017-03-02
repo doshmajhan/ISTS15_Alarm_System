@@ -3,8 +3,15 @@
   remote_user: pi
   sudo: yes
   tasks:
+    # install python3, pip3, pymodbus3 
+    #- name: pip
+      #command: pip install pymodbus
+
     #- name: stuff
-      #command: wget http://10.80.100.36:8080/ISTS15_Alarm_System/led.py
+      #command: wget http://10.160.80.4:8000/alarm.py
 
     - name: let there be light
       command: python /home/pi/led.py
+    
+    #- name: run modbus
+     #   command: python /home/pi/alarm.py

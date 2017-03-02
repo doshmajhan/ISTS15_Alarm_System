@@ -40,7 +40,7 @@ class sensor():
             client = ModbusClient(self.addr, port=502)
             client.connect()
             if self.stat != 1:
-                rq = client.write_register(1, 0)    # write 0 to our result register
+                rq = client.write_register(1, 1)    # write 0 to our result register
                 if rq.function_code == 6:
                     print "Writing successful"
                 else:

@@ -24,13 +24,9 @@ class Alarm(Thread):
 
     def run(self):
         while True:
-            stat = self.get_stat()
-            self.currentStat = stat
-            print "Current: " + str(self.currentStat) + " " + str(self.fileName)
-            sleep(5)
-
-    def get_stat(self):
-        return 1
+            print("Current: " + str(self.currentStat))
+	    set_alarm(self.currentStat)
+            sleep(5) 
 
     def setEnabled(self, enabled):
         self.enabled = enabled
@@ -43,32 +39,36 @@ def updating_writer(a):
     function = 3
     slave_id = 0x00
     address  = 0x00
-    values = [int(pi.get_stat())]
+    values = [int(pi.currentStat)]
     context[slave_id].setValues(function,address,values)
     # add stuff to log to file to be read
     #print context[slave_id].getValues(function, address)  # prints our holding register
     result = context[slave_id].getValues(function, 0x01)
-    #set_alarm(result)
+    print result
+    pi.currentStat = result[0]
 
 def set_alarm(result):
+    global green_on
+    global red_on
     GPIO.setmode(GPIO.BCM)
     GPIO.setwarnings(False)
 
-    if result == 1:
-        GPIO.setup(23, GPIO.OUT)
-        print "GREEN on"
-        GPIO.output(23, GPIO.HIGH)
-        time.sleep(3)
-        print "GREEN off"
-        GPIO.output(23, GPIO.LOW)
-
-    else:
+    if result == 1 and not green_on:
+	GPIO.setup(23, GPIO.OUT)
+	GPIO.output(23, GPIO.LOW)
         GPIO.setup(18, GPIO.OUT)
-        print "RED on"
         GPIO.output(18, GPIO.HIGH)
-        time.sleep(3)
-        print "RED off"
-        GPIO.output(18, GPIO.LOW)
+        red_on = False
+	green_on = True
+
+    elif result == 0 and not red_on:
+	GPIO.setup(18, GPIO.OUT)
+	GPIO.output(18, GPIO.LOW)
+        GPIO.setup(23, GPIO.OUT)
+        GPIO.output(23, GPIO.HIGH)
+	green_on = False
+	red_on = True
+
 
 def main():
     # initialize the four register types
@@ -87,11 +87,13 @@ def main():
     identity.ModelName   = 'SP_1337'
     identity.MajorMinorRevision = '1.0'
     pi.start()
-    time = 5 
+    time = 5
     loop = LoopingCall(f=updating_writer, a=(context,))
     loop.start(time, now=False) # initially delay by time
     StartTcpServer(context, identity=identity, address=('0.0.0.0', 502))
 
 if __name__ == '__main__':
+    green_on = False
+    red_on = False
     pi = Alarm()
     main()
